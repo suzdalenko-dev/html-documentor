@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es" class="bg-gray-50">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard</title>
+    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+    <script src="/assets/css/taiwling.js"></script> 
+    <script src="/assets/js/vendor/chart.js""></script>
+    <meta name="description" content="" />
+    <meta name="author" content="Alexey Suzdalenko" />
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/style.css" />
+    <script src="https://www.gstatic.com/charts/loader.js"></script>
+</head>
+<body>
+    <!-- Sidebar -->
+    <aside id="sidebar"
+        class="w-64 bg-white shadow-md p-4 fixed inset-y-0 left-0 z-50 transform -translate-x-full transition-transform duration-300">
+        <a href="/dashboard" class="flex items-center gap-2 px-2 py-2 hover:bg-gray-100 rounded-md">🏠 Dashboard</a>
+        <!-- <a href="#" class="flex items-center gap-2 px-2 py-2 hover:bg-gray-100 rounded-md">📋 Simple Item</a>>  -->
+        <nav class="space-y-2" id="menuContainer">
+
+        </nav>
+        <a href="/" class="flex items-center gap-2 px-2 py-2 hover:bg-gray-100 rounded-md">👤 Login</a>
+        <br>
+        <br>
+        <br>
+        <br>
+        <div style="text-align: center;">
+            <button id="menuButton" onclick="toggleSidebar('userClick')" class="text-xl text-gray-700">☰</button>
+        </div>
+    </aside>
+
+    <!-- Main content 
+    <input type="text" placeholder="Search..." class="border px-3 py-1 rounded-md w-full max-w-md md:hidden" /> 
+    -->
+    <div id="content" class="flex-1 flex flex-col transition-transform duration-300">
+        <!-- Top bar -->
+        <header class="bg-white shadow pl-4 pr-4 p-2 flex items-center justify-between">
+            <span>
+                <button id="menuButton" onclick="toggleSidebar('userClick')" class="text-xl">☰</button> 
+                <span class="text-xl clblack" id="appTime"></span>
+            </span>
+            <div class="text-xl text-gray-700" id="slugTitle"></div>
+            <div class="flex items-center gap-3">
+                <span class="font-medium clblack" id="userNameApp"></span>
+                <img src="/assets/img/logo.png" width="41px" /
+            </div>
+        </header>
+        <!-- Dashboard content -->
+        <main class="p-4 bg-white" id="htmlContent"></main>
+    </div>
+
+    <!-- JS -->
+    <script src="/assets/js/4.notifications.js"></script>
+    <script src="/assets/js/0.config.js"></script>
+    <script src="/assets/js/1.router.js"></script>
+    <script src="/assets/js/2.0.menu.js"></script>
+    <script src="/assets/js/2.menu.js"></script>
+    <script src="/assets/js/3.hamburger.js"></script>
+    <script src="/assets/js/5.functions.js"></script>
+    <script src="/assets/js/6.utils.js"></script>
+    <script src="/assets/js/vendor/xlsx.full.min.js"></script>
+    <script src="/assets/js/vendor/jspdf.umd.min.js"></script>
+    <script src="/assets/js/vendor/jspdf.plugin.autotable.min.js"></script>
+    <!--
+        <script src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"></script>
+    -->
+
+    <script>
+        // const originalFetch = window.fetch;
+        // window.fetch = function(resource, config) {
+        //     if (typeof resource === 'string' && resource.endsWith('.js')) {
+        //         const url = new URL(resource, location.origin);
+        //         url.searchParams.set('time', Date.now());
+        //         return originalFetch(url.toString(), config);
+        //     }
+        //     return originalFetch(resource, config);
+        // };
+    </script>
+</body>
+
+</html>

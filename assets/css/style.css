@@ -1,0 +1,272 @@
+@font-face {
+    font-family: 'DS-Digital';
+    src: url('/assets/css/fonts/DS-DIGI.TTF') format('truetype');
+}
+
+@font-face {
+    font-family: 'DS-Digital-Bold';
+    src: url('/assets/css/fonts/DS-DIGIB.TTF') format('truetype');
+}
+
+@font-face {
+    font-family: 'DS-Digital-Italic';
+    src: url('/assets/css/fonts/DS-DIGII.TTF') format('truetype');
+}
+
+@font-face {
+    font-family: 'DS-Digital-BoldItalic';
+    src: url('/assets/css/fonts/DS-DIGIT.TTF') format('truetype');
+}
+
+#appTime{
+    font-family: 'DS-Digital-Bold';
+    font-size: 19px;
+}
+
+/* Personalización del scroll */
+   #sidebar {
+    overflow-y: auto;
+    /* activa el scroll vertical */
+}
+
+/* Para Chrome, Safari, Edge, Opera */
+#sidebar::-webkit-scrollbar {
+    width: 1px;
+    /* anchura del scrollbar */
+}
+
+#sidebar::-webkit-scrollbar-track {
+    background: transparent;
+    /* fondo del scrollbar */
+}
+
+#sidebar::-webkit-scrollbar-thumb {
+    background-color: #fafafa;
+    /* color azul personalizado */
+    border-radius: 1px;
+    /* bordes redondeados */
+}
+
+/* Para Firefox */
+#sidebar {
+    scrollbar-width: thin;
+    /* scrollbar fino */
+    scrollbar-color: #fafafa transparent;
+    /* scrollbar color y fondo */
+}
+
+body {
+    font-size: 15px;
+    color: black
+}
+.b-top-page{
+    background-color: #E5E5E5;
+    color: black;
+    font-size: 13px;
+    padding: 2px;
+    border-radius: 4px;
+}
+.b-top-page:hover{
+    background-color: #3336FF;
+    color: aliceblue;
+    cursor: pointer;
+}
+input:hover{
+    cursor: pointer;
+}
+.hovered:hover{
+    cursor:pointer;
+}
+ /* Scroll fino en navegadores modernos */
+body {
+    scrollbar-width: thin;              /* Firefox */
+    scrollbar-color: #ccc transparent;  /* Firefox */
+  }
+
+body::-webkit-scrollbar {
+    width: 1px;                         /* Ancho fino para scroll vertical */
+  }
+
+body::-webkit-scrollbar-thumb {
+    background-color: #aaa;
+    border-radius: 2px;
+  }
+
+body::-webkit-scrollbar-track {
+    background: transparent;
+  }
+.spanButton{
+    background: rgb(244, 244, 244);
+    padding: 3px;
+}
+td, th, tr{
+    font-size: 13px!important;
+}
+.twcolor{
+    background:#4F46E5; color: white
+}
+*{
+    margin: 0; padding: 0;
+    font-family: Consolas, "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", "Monaco", "Ubuntu Mono", "Bitstream Vera Sans Mono", "DejaVu Sans Mono", "Source Code Pro", monospace;
+    font-size: 13px; font-weight: 500; 
+}
+.b-top-page{
+    margin-left: 11px;
+}
+.howerA{
+    cursor: pointer;
+}
+.marg_left{
+    margin-left: 111px;
+}
+.input_alt_desc{
+    width: 333px;
+}
+.bgred{
+    background-color: red;
+}
+.taleft{
+    text-align: left!important;
+}
+.topLeft {
+    border-top-left-radius: 4px;
+}
+.topRight {
+    border-top-right-radius: 4px;
+}
+table{
+    border: none;
+}
+li:hover{
+    cursor: pointer;
+    background-color: #4F46E5; color: white;
+}
+.styled-table-ca thead th {
+        background-color: #4F46E5; 
+        color: white;
+}
+.styled-table-ca {
+    width: 100%;
+    border-collapse: collapse;
+}
+.styled-table-ca th, .styled-table-ca td {
+    padding: 1px 4px;
+}
+.styled-table-ca tbody tr:hover {
+    background-color: rgb(197, 255, 197)!important;
+}
+.styled-table-ca tbody tr:nth-of-type(even) {
+    background-color: rgb(238, 251, 238);
+}
+
+.styled-table-fh thead th {
+        background-color: #4F46E5; 
+        color: white;
+}
+.styled-table-fh {
+    width: 100%;
+    border-collapse: collapse;
+}
+.styled-table-fh th, .styled-table-fh td {
+    padding: 1px 4px;
+}
+
+.input-ca{
+    width: 71px; border: 1px solid rgb(215, 215, 215); outline: none; background-color: white;
+    text-align: center; border-radius: 4px;
+}
+.input-ca:focus{
+    border: 1px solid #4F46E5;
+}
+#articleCodeId, #descripcionCodeId{
+    text-align: left;
+}
+#articleCodeId{
+    background-color: rgb(235, 235, 235);
+}
+.bgadmin{
+    background-color: #4f46e5;
+}
+.input-ca-ba{
+    width: 322px;
+}
+.input-ca-ccl{
+    width: 202px;
+}
+#chart_div_dc {
+    width: 100%;
+    height: 300px;
+}
+.small-letter{
+    font-size: 11px;
+}
+
+
+.stycky-table thead th {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+.color_blue{
+    color:#4f46e5;
+}
+b{
+    font-weight: 900;
+}
+.class_green{
+    background-color: rgb(1, 97, 1);
+    color:white;
+}
+.input_pal{
+    width: 100%;
+    border-radius: 3px;
+    border: 1px solid #4f46e5!important;
+    text-align: center!important;
+}
+
+
+
+* {
+  scrollbar-width: thin;                     /* fino */
+  scrollbar-color: #463fd5 transparent;      /* color del thumb y fondo */
+}
+
+/* WebKit (Chrome, Safari, Edge) */
+*::-webkit-scrollbar {
+  width: 6px;    /* grosor vertical */
+  height: 6px;   /* grosor horizontal */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent; /* fondo del track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #463fd5; /* color del thumb */
+  border-radius: 9999px;     /* redondeado */
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background-color: #463fd5; /* tono un poco más oscuro al pasar el mouse */
+}
+
+.expanded{
+    height: 33px;
+}
+
+.height-calendar{
+    height: 252px;
+}
+
+.ml-11:hover, label:hover{
+    cursor: pointer;
+}
+.clwhite{
+    color: white;
+}
+.clblack{
+    color: #080377;
+}
+.padd7{
+    padding: 3px;
+}
