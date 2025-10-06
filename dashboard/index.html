@@ -4,7 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dashboard</title>
-    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
     <script src="/assets/css/taiwling.js"></script> 
     <script src="/assets/js/vendor/chart.js""></script>
     <meta name="description" content="" />
@@ -33,9 +32,6 @@
         </div>
     </aside>
 
-    <!-- Main content 
-    <input type="text" placeholder="Search..." class="border px-3 py-1 rounded-md w-full max-w-md md:hidden" /> 
-    -->
     <div id="content" class="flex-1 flex flex-col transition-transform duration-300">
         <!-- Top bar -->
         <header class="bg-white shadow pl-4 pr-4 p-2 flex items-center justify-between">
@@ -46,7 +42,7 @@
             <div class="text-xl text-gray-700" id="slugTitle"></div>
             <div class="flex items-center gap-3">
                 <span class="font-medium clblack" id="userNameApp"></span>
-                <img src="/assets/img/logo.png" width="41px" /
+                <img src="/assets/img/logo.png" width="29px" /
             </div>
         </header>
         <!-- Dashboard content -->
@@ -65,23 +61,6 @@
     <script src="/assets/js/vendor/xlsx.full.min.js"></script>
     <script src="/assets/js/vendor/jspdf.umd.min.js"></script>
     <script src="/assets/js/vendor/jspdf.plugin.autotable.min.js"></script>
-    <!--
-        <script src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"></script>
-    -->
-
-    <script>
-        // const originalFetch = window.fetch;
-        // window.fetch = function(resource, config) {
-        //     if (typeof resource === 'string' && resource.endsWith('.js')) {
-        //         const url = new URL(resource, location.origin);
-        //         url.searchParams.set('time', Date.now());
-        //         return originalFetch(url.toString(), config);
-        //     }
-        //     return originalFetch(resource, config);
-        // };
-    </script>
+  
 </body>
-
 </html>

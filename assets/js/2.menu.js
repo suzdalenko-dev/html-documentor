@@ -35,7 +35,7 @@ function normalizeRoles(roles) {
 
 function hasAccess(roles) {
   const required = normalizeRoles(roles);
-  if (required.length === 0) return true;       // sin restricción
+  if (required.length === 0) return true;          // sin restricción
   if (currentUserRoles.includes('*')) return true; // superusuario
   return currentUserRoles.some(r => required.includes(r));
 }

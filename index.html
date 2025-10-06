@@ -4,43 +4,55 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Informes Froxá</title>
+    <title>Documentor</title>
     <script src="/assets/css/taiwling.js"></script> 
     <script src="/assets/js/vendor/chart.js""></script>
-    <meta name="description" content="Froxá" />
+    <meta name="description" content="" />
     <meta name="author" content="Alexey Suzdalenko" />
     <link rel="icon" type="image/png" href="/favicon.png">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
-    <link rel="manifest" href="/manifest.json">
     <meta name="theme-color" content="#4F46E5" /
 </head>
 <body>
 <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8 mt-10">
     <div class="sm:mx-auto sm:w-full sm:max-w-sm">
-      <img class="mx-auto h-10 w-auto" src="/assets/img/logo.png" alt="Froxá">
-      <h2 class="mt-10 text-center text-2xl/9 font-bold tracking-tight text-gray-900">Informes</h2>
+      <a href="/"><h2 class="mt-10 text-center text-2xl/9 font-bold tracking-tight text-gray-900">Documentor</h2></a>
     </div>
   
     <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
       <form class="space-y-6" action="#" method="POST">
-        <div>
+
+        <div id="divName">
           <label for="email" class="block text-sm/6 font-medium text-gray-900">Nombre</label>
           <div class="mt-2">
-            <input onkeypress="clickInput(event)" name="email" id="email" autocomplete="email" required class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
+            <input name="email" id="email" autocomplete="email" required class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-blue-600 sm:text-sm/6">
           </div>
         </div>
   
-        <div>
+        <div id="divEmail">
           <div class="flex items-center justify-between">
             <label for="password" class="block text-sm/6 font-medium text-gray-900">Contraseña</label>
           </div>
           <div class="mt-2">
-            <input onkeypress="clickInput(event)" type="password" name="password" id="password" autocomplete="current-password" required class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
+            <input type="password" name="password" id="password" autocomplete="current-password" required class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-blue-600 sm:text-sm/6">
+          </div>
+        </div>
+
+        <div style="display: none;" id="divEmailCode">
+          <div class="flex items-center justify-between">
+            <label for="password" class="block text-sm/6 font-medium text-gray-900">Introduzca el código que hemos enviado a su correo electrónico</label>
+          </div>
+          <div class="mt-2">
+            <input type="text" name="email_code" id="email_code" required class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-blue-600 sm:text-sm/6">
           </div>
         </div>
   
-        <div>
-          <input onkeypress="clickInput(event)" type="button" class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 hover-a" onclick="loginApp()" value="Entrar">
+        <div id="divSentEmailPassword">
+          <input onclick="loginApp()" type="button" class="flex w-full justify-center rounded-md bg-blue-700 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:bg-blue-900 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 hover-a" value="Entrar">
+        </div>
+
+         <div id="divSentEmailCode" style="display: none;">
+          <input onclick="loginApp('need_have_email_code')" type="button" class="flex w-full justify-center rounded-md bg-blue-700 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:bg-blue-900 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 hover-a" value="Enviar código">
         </div>
       </form>
     </div>
@@ -48,36 +60,66 @@
     <script src="/assets/js/0.config.js"></script>
     <script src="/assets/js/4.notifications.js"></script>
   <script>
-    function clickInput(event){
-      if (event.key == 'Enter' || event.keyCode == 13) {
-        event.preventDefault(); 
-        loginApp(); 
-      }
+    function showInputEmailCode(){
+      document.getElementById('divName').style.display              = 'none';
+      document.getElementById('divEmail').style.display             = 'none';
+      document.getElementById('divSentEmailPassword').style.display = 'none';
+      document.getElementById('divEmailCode').style.display         = 'block';
+      document.getElementById('divSentEmailCode').style.display     = 'block';
     }
-    function loginApp(){
-      let username = document.getElementById('email').value.trim().toLowerCase();
-      let password = document.getElementById('password').value.trim();
 
+    function loginApp(x){
+      let username   = document.getElementById('email').value.trim().toLowerCase();
+      let password   = document.getElementById('password').value.trim();
+      let email_code = document.getElementById('email_code').value.trim().toLowerCase();
+      if(!username || !password){ return; }
+      if(!email_code && x == 'need_have_email_code'){ showM('Debe insertar el código que hemos enviado a su correo electrónico', 'warning'); return; }
+      
       let formData = new FormData();
       formData.append('username', username);
       formData.append('password', password);
       formData.append('action', 'login');
+      formData.append('email_code', email_code);
 
-      fetch(HTTP_HOST+'froxa/login/', {method:'POST', body: formData}).then(r => r.json()).then(r => {  console.log(r)
+      document.getElementById('divSentEmailPassword').style.display = 'none';
+
+      fetch(HTTP_HOST+'mainapp/login/', {method:'POST', body: formData}).then(r => r.json()).then(r => {  console.log(r); console.log(window.localStorage);
           if(r && r.data && r.data.id > 0){
             window.localStorage.setItem('username', username);
             window.localStorage.setItem('password', password);
             window.localStorage.setItem('role', r.data.role);
             window.localStorage.setItem('permissions', r.data.permissions);
             window.localStorage.setItem('action_pass', r.data.action_pass);
-            window.location.href = '/dashboard';
+
+            if(r.data.aviso == 'credenciales-correctos'){
+              showM('Credenciales correctos, enviando el código..');
+              showInputEmailCode();
+            }
+
+            if(r.data.aviso == 'codigo-incorrecto'){
+              // aqui instalo el Beaber en fetch js y paso a la pantalla de /dashboard
+              showM('Codigo insertado incorrecto', 'warning');
+            }
+
+            if(r.data.aviso == 'codigo-correcto'){
+              // aqui instalo el Beaber en fetch js y paso a la pantalla de /dashboard
+              showM('Codigo insertado correcto');
+              window.localStorage.setItem('token', r.data.token);
+              window.location.href = '/dashboard/#documentos-listado-general';
+            }
+
+            document.getElementById('email_code').value = '';
+      
           } else if (r.message){
-             showM(r.message, 'warning');
+            showM(r.message, 'warning');
+            document.getElementById('divSentEmailPassword').style.display = 'block';
           } else {
             showM('Credenciales incorrectos', 'warning');
+            document.getElementById('divSentEmailPassword').style.display = 'block';
           }
         }).catch(e => { 
           showM('e34 '+e, 'error');
+          document.getElementById('divSentEmailPassword').style.display = 'block';
         });
     }
 
@@ -85,6 +127,9 @@
       document.getElementById('email').value = window.localStorage.getItem('username');
       document.getElementById('password').value = window.localStorage.getItem('password');
     }
+
+
+    console.log(window.localStorage.getItem('token'));
   </script>
   <style>
     .hover-a{

@@ -34,3 +34,9 @@ function suzdalenkoPost(url, objectValues = {}, callback) {
 }
 
 /* GET AND POST SUZDALENKO API END */
+
+function reloadPagesSuzdalenko(){
+  setTimeout(() => {
+    window.location.reload();
+  }, 2200);
+}

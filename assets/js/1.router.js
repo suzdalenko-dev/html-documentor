@@ -53,35 +53,27 @@ function loadView(viewName) {
             viewContainer.innerHTML = 'e1. Error '+ e;
         });
     
-    let username = window.localStorage.getItem('username');
-    let password = window.localStorage.getItem('password');
-    let formData = new FormData();
-    formData.append('username', username);
-    formData.append('password', password);
-    formData.append('action', 'login');
+    
 
-    fetch(HTTP_HOST+'froxa/login/', {method:'POST', body: formData}).then(r => r.json()).then(r => {
-        if(r && r.data && r.data.id > 0){
+    fetch(HTTP_HOST+'mainapp/token_role_permissions/', {method:'GET', headers: { 'Authorization': 'Bearer ' + window.localStorage.getItem('token') }}).then(r => r.json()).then(r => {
+        if(r && r.data && r.data.id > 0 && r.data.token == 'ok'){
             window.localStorage.setItem('role', r.data.role);
             window.localStorage.setItem('permissions', r.data.permissions);
-            
         } else {
             showM('Credenciales incorrectos', 'warning');
-            setTimeout(() => { window.location.href = '/'; }, 3000);
+            setTimeout(() => { window.location.href = '/'; }, 11000);
             deleteContent();
         }
     }).catch(e => { 
         showM('e34 '+e, 'error');
-        setTimeout(() => { window.location.href = '/'; }, 3000);
+        setTimeout(() => { window.location.href = '/'; }, 11000);
         deleteContent();
     });
 }
 
 
 function deleteContent(){
-    setInterval(() => {
-        document.getElementById('htmlContent').innerHTML = '';
-    }, 1000);
+    setInterval(() => { document.getElementById('htmlContent').innerHTML = ''; }, 1000);
 }
 
 
