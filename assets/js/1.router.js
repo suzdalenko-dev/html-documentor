@@ -56,7 +56,9 @@ function loadView(viewName) {
     
 
     fetch(HTTP_HOST+'mainapp/token_role_permissions/', {method:'GET', headers: { 'Authorization': 'Bearer ' + window.localStorage.getItem('token') }}).then(r => r.json()).then(r => {
-        if(r && r.data && r.data.id > 0 && r.data.token == 'ok'){
+        if(r && r.data && r.data.user_id > 0 && r.data.token == 'ok'){
+            window.localStorage.setItem('user_id', r.data.user_id);
+            window.localStorage.setItem('username', r.data.username);
             window.localStorage.setItem('role', r.data.role);
             window.localStorage.setItem('permissions', r.data.permissions);
         } else {

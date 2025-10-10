@@ -103,7 +103,7 @@ td, th, tr{
     font-size: 13px!important;
 }
 .twcolor{
-    background:#4F46E5; color: white
+    background: rgb(25, 25, 235); color: white
 }
 *{
     margin: 0; padding: 0;
@@ -160,7 +160,7 @@ li:hover{
 }
 
 .styled-table-fh thead th {
-        background-color: #4F46E5; 
+        background-color: rgb(25, 25, 235); 
         color: white;
 }
 .styled-table-fh {
@@ -269,4 +269,51 @@ b{
 }
 .padd7{
     padding: 3px;
+}
+
+.tagcne{
+    display: inline-block;
+    background-color: rgb(25, 25, 235);
+    color: white;
+    border-radius: 3px;
+    padding: 0px 4px;
+    margin: 3px;
+}
+.tagcne:hover{
+    background-color: rgb(5, 5, 150);
+    cursor: pointer;
+}
+
+.bluecol{
+    background-color: rgb(25, 25, 235)!important;
+    color: white!important;
+    border-radius: 3px;
+    padding-left: 2px;
+    padding-right: 2px;
+}
+.bluecol:hover{
+    background-color: rgb(5, 5, 150)!important;
+    cursor: pointer;
+}
+#slugTitle{
+    color: black;
+}
+.searchDLG:hover{
+    cursor: pointer;
+    background-color: rgb(25, 25, 235)!important;
+}
+.greycol{
+    background-color: grey!important;
+    color: white!important;
+    border-radius: 3px;
+    padding-left: 2px;
+    padding-right: 2px;
+}
+.greycol:hover{
+    background-color: rgb(68, 67, 67)!important;
+    cursor: pointer;
+}
+.searchDLG{
+    border: 1px solid rgb(25, 25, 235);
+    border-radius: 3px;
 }

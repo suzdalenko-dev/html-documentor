@@ -1,16 +1,21 @@
 <div class="p-4 bg-white shadow-md rounded-md">
-  <h2 class="text-xl font-semibold mb-4">Crear nueva etiqueta</h2>
-
-  <form id="newDocumentForm" enctype="multipart/form-data" class="space-y-4">
+  <div class="space-y-4">
     <div>
       <label class="block text-sm font-medium mb-1">Nombre de la etiqueta</label>
-      <input id="tagCNE" type="text" name="title" class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-1 focus:ring-blue-500" placeholder="Escribe el nombre da la etiqueta..." required>
+      <input id="tagCNE" type="text" name="title" class="w-full border border-gray-300 rounded px-2 py-1 focus:outline-none focus:ring-1 focus:ring-blue-500" placeholder="Escribe el nombre da la etiqueta..." required>
     </div>
 
     <div class="flex justify-end gap-3 pt-4">
-      <button type="submit" class="px-4 py-2 bg-blue-700 text-white rounded hover:bg-blue-900" onclick="createTagCNE()">Guardar etiqueta</button>
+      <button type="submit" class="bluecol" onclick="createTagCNE()">Crear Etiqueta</button>
     </div>
-  </form>
+  </div>
 </div>
+<br>
+<div class="p-4 bg-white shadow-md rounded-md">
+  <h2 class="block text-sm font-medium mb-1">Mis etiquetas</h2>
 
+  <div class="space-y-4">
+    <div id="tagsListCNE"></div>
+  </div>
+</div>
 

@@ -1,119 +1,46 @@
 <div id="newDocumentTab" class="p-4 bg-white shadow-md rounded-md">
-  <h2 class="text-xl font-semibold mb-4">Crear Nuevo Documento</h2>
-
-  <form id="newDocumentForm" enctype="multipart/form-data" class="space-y-4">
-
-    <!-- Título -->
+  <div class="space-y-4">
     <div>
       <label class="block text-sm font-medium mb-1">Título del documento</label>
-      <input type="text" name="title"
-             class="w-full border border-gray-300 rounded px-3 py-2
-                    focus:outline-none focus:ring-1 focus:ring-blue-500"
-             placeholder="Escribe el nombre del documento..." required>
+      <input id="doc_title" type="text" name="title" class="w-full border rounded px-2 py-1" placeholder="Escribe el nombre del documento..." required>
     </div>
 
-    <!-- Descripción -->
     <div>
       <label class="block text-sm font-medium mb-1">Descripción</label>
-      <textarea name="description" rows="3"
-                class="w-full border border-gray-300 rounded px-3 py-2
-                       focus:outline-none focus:ring-1 focus:ring-blue-500"
-                placeholder="Breve descripción del documento..."></textarea>
+      <textarea id="doc_description" name="description" rows="3" class="w-full border rounded px-2 py-1" placeholder="Breve descripción del documento..."></textarea>
     </div>
 
-    <!-- Fecha de caducidad -->
-    <div>
-      <label class="block text-sm font-medium mb-1">Fecha de caducidad</label>
-      <input type="date" name="expiration_date"
-             class="border border-gray-300 rounded px-3 py-2
-                    focus:outline-none focus:ring-1 focus:ring-blue-500">
+    <div class="flex gap-4">
+      <div class="w-1/5">
+        <label class="block text-sm font-medium mb-1">Fecha de caducidad</label>
+        <input id="doc_date" type="date" name="expiration_date" class="w-full border rounded px-2 py-1">
+      </div>
+
+      <div class="flex-1">
+        <label class="block text-sm font-medium mb-1">Correos aviso</label>
+        <input id="email_aviso" type="text" name="email_aviso" class="w-full border rounded px-2 py-1">
+      </div>
     </div>
 
-    <!-- Archivo -->
     <div>
       <label class="block text-sm font-medium mb-1">Archivo</label>
-      <input type="file" name="file"
-             class="block w-full text-sm text-gray-700 border border-gray-300
-                    rounded cursor-pointer focus:outline-none">
+      <input id="doc_file" type="file" name="file" class="block w-full text-sm text-gray-700 border border-gray-300 rounded cursor-pointer focus:outline-none">
     </div>
 
-    <!-- Etiquetas seleccionadas -->
     <div>
-      <h3 class="text-sm font-semibold mb-1">Etiquetas seleccionadas:</h3>
-      <div id="selectedTags" class="flex flex-wrap gap-2 p-2 border border-gray-300 rounded bg-gray-50 min-h-[2.5rem]">
-        <!-- Aquí aparecerán las etiquetas seleccionadas -->
-      </div>
-      <!-- input oculto para enviar IDs de etiquetas -->
-      <input type="hidden" name="tags" id="tagsInput">
+      <h3 class="block text-sm font-medium mb-1">Etiquetas seleccionadas:</h3>
+      <div id="selectedTagsCND"></div>
     </div>
 
-    <!-- Todas las etiquetas disponibles -->
-    <div>
-      <h3 class="text-sm font-semibold mt-3">Seleccionar etiquetas:</h3>
-      <div id="allTags" class="flex flex-wrap gap-2 mt-2">
-        <!-- Ejemplo de etiquetas con IDs -->
-        <span data-id="1" class="tag px-2 py-1 border rounded cursor-pointer hover:bg-blue-100">etiquetas</span>
-        <span data-id="2" class="tag px-2 py-1 border rounded cursor-pointer hover:bg-blue-100">proveedor</span>
-        <span data-id="3" class="tag px-2 py-1 border rounded cursor-pointer hover:bg-blue-100">seguridad</span>
-        <span data-id="4" class="tag px-2 py-1 border rounded cursor-pointer hover:bg-blue-100">uso general</span>
-        <span data-id="5" class="tag px-2 py-1 border rounded cursor-pointer hover:bg-blue-100">web</span>
-        <span data-id="6" class="tag px-2 py-1 border rounded cursor-pointer hover:bg-blue-100">pruebas</span>
-      </div>
-    </div>
-
-    <!-- Botones -->
     <div class="flex justify-end gap-3 pt-4">
-      <button type="reset"
-              class="px-4 py-2 bg-gray-200 rounded hover:bg-gray-300">
-        Cancelar
-      </button>
-      <button type="submit"
-              class="px-4 py-2 bg-blue-700 text-white rounded hover:bg-blue-900">
-        Guardar Documento
-      </button>
+      <button onclick="saveDocCND()" type="button" class="bluecol">Guardar Documento</button>
     </div>
-  </form>
+  </div>
 </div>
-
-<script>
-  const selectedTags = new Set();              // almacena IDs seleccionados
-  const selectedTagsContainer = document.getElementById('selectedTags');
-  const tagsInput = document.getElementById('tagsInput');
-  const tagElements = document.querySelectorAll('#allTags .tag');
-
-  tagElements.forEach(tagEl => {
-    tagEl.addEventListener('click', () => {
-      const id = tagEl.dataset.id;
-      const name = tagEl.textContent;
-
-      if (selectedTags.has(id)) {
-        // quitar
-        selectedTags.delete(id);
-        tagEl.classList.remove('bg-blue-500', 'text-white');
-      } else {
-        // añadir
-        selectedTags.add(id);
-        tagEl.classList.add('bg-blue-500', 'text-white');
-      }
-
-      // actualizar zona de etiquetas seleccionadas
-      selectedTagsContainer.innerHTML = '';
-      selectedTags.forEach(tid => {
-        const span = document.createElement('span');
-        span.className = 'px-2 py-1 bg-blue-100 border rounded';
-        span.textContent = document.querySelector(`[data-id="${tid}"]`).textContent;
-        selectedTagsContainer.appendChild(span);
-      });
-
-      // actualizar input oculto con IDs separados por coma
-      tagsInput.value = Array.from(selectedTags).join(',');
-    });
-  });
-
-  document.getElementById('newDocumentForm').addEventListener('submit', e => {
-    e.preventDefault();
-    const formData = new FormData(e.target);
-    console.log('Datos a enviar:', Object.fromEntries(formData));
-    // fetch('/api/documentos', { method: 'POST', body: formData })
-  });
-</script>
+<br>
+<div class="p-4 bg-white shadow-md rounded-md">
+  <h3 class="text-sm font-semibold mb-1">Etiquetas disponibles:</h3>
+  <div class="space-y-4">
+    <div id="tagsListCND"></div>
+  </div>
+</div>

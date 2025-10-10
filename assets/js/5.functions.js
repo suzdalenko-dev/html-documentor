@@ -268,16 +268,6 @@ function formatEuro(num) {
   }).format(n);
 }
 
-
-function getOfState(x){
-    if(x == 'A') return 'Abierta';
-    if(x == 'C') return 'Cerrada';
-    if(x == 'B') return 'Anulada';
-    if(x == 'R') return 'Retenida';
-    return 'None';
-}
-
-
 const toNum = (v) => {
   if (v === null || v === undefined || v === '' || v === 'None') return NaN;
   if (typeof v === 'number') return v;
@@ -368,9 +358,6 @@ function getCurrentYearMonth(){
   return current;
 }
 
-
-
-
 function sortedByNameSuzdalenko(list) {
   return list.sort((a, b) => {
     const an = (a.name ?? '').toString().trim();
@@ -395,4 +382,21 @@ function getYearBoundsStr(year) {
   const last  = new Date(Date.UTC(y, 11, 31));
   const toYMD = d => d.toISOString().slice(0, 10); 
   return [toYMD(first), toYMD(last)];
+}
+
+function datePlus5Years(){
+  const today = new Date();
+  const future = new Date(today.getFullYear() + 5, today.getMonth(), today.getDate());
+  return future.toISOString().slice(0, 10);
+}
+
+function semicolonReplace(x){
+  if(x) return x.replaceAll(';', '; ');
+  return '';
+}
+
+function notNull(x){
+  x = String(x).trim();
+  if(x == 'null' || x == 'None' || x == 'undefined') return '';
+  return String(x).trim();
 }

@@ -1,0 +1,75 @@
+<div id="filterPanelDLG" class="border rounded-md p-4 mb-4 shadow-md" style="display: none;">
+  <h3 class="text-md font-semibold mb-3">Filtros</h3>
+  <div class="flex flex-wrap gap-4 items-end text-sm">
+    <!-- Buscar texto -->
+    <div class="flex-1 min-w-[250px]">
+      <label class="block mb-1 font-medium">Buscar texto</label>
+      <input id="filter_text_dlg" oninput="filterChangeDLG()" type="text" class="w-full border rounded px-2 py-1" placeholder="Nombre, descripción o email...">
+    </div>
+
+    <!-- Creado desde -->
+    <div class="w-[111px]">
+      <label class="block mb-1 font-medium">Creado desde</label>
+      <input type="date" id="creation_date_from" oninput="filterChangeDLG()" class="w-full border rounded px-2 py-1">
+    </div>
+
+    <!-- Creado hasta -->
+    <div class="w-[111px]">
+      <label class="block mb-1 font-medium">Creado hasta</label>
+      <input type="date" id="creation_date_to" oninput="filterChangeDLG()" class="w-full border rounded px-2 py-1">
+    </div>
+
+    <!-- Expira desde -->
+    <div class="w-[111px]">
+      <label class="block mb-1 font-medium">Expira desde</label>
+      <input type="date" id="expiration_date_from" oninput="filterChangeDLG()" class="w-full border rounded px-2 py-1">
+    </div>
+
+    <!-- Expira hasta -->
+    <div class="w-[111px]">
+      <label class="block mb-1 font-medium">Expira hasta</label>
+      <input type="date" id="expiration_date_to" oninput="filterChangeDLG()" class="w-full border rounded px-2 py-1">
+    </div>
+  </div>
+
+  <!-- Botones -->
+  <div class="flex justify-end gap-3 mt-4">
+    <button onclick="clearFilterDLG()" class="greycol">Limpiar</button>
+    <button onclick="applyFilterDLG()" class="bluecol">Aplicar filtros</button>
+  </div>
+</div>
+
+
+
+<div class="p-4 bg-white shadow-md rounded-md">
+    <div class="space-y-4">
+        <div class="flex flex-col gap-2 text-sm w-full">
+            <div>
+                <table class="w-ful styled-table-fh stycky-table">
+                    <thead>
+                        <tr class="twcolor">
+                            <th class="topLeft">Id</th>
+                            <th>Nombre</th>
+                            <th>Descripción</th>
+                            <th>Creado</th>
+                            <th>Expira</th>
+                            <th>Aviso</th>
+                            <th class="topRight">Etiquetas</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableDLG">
+                        
+                    </tbody>
+                </table>
+            </div>
+            <div class="flex justify-between items-center mt-3 text-sm">
+                <div id="totalDocsDLG" class="font-medium text-black-900">Total doc: <span id="totalDocsCount">0</span></div>
+                <div id="paginationDLG" class="flex items-center gap-2">
+                    <button onclick="prevPageDLG()" class="bluecol px-2 py-1 rounded" title="Página anterior">&lt;</button>
+                    <span id="pageInfoDLG">Página 1 de 1</span>
+                    <button onclick="nextPageDLG()" class="bluecol px-2 py-1 rounded" title="Página siguiente">&gt;</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -52,7 +52,7 @@
         </div>
 
          <div id="divSentEmailCode" style="display: none;">
-          <input onclick="loginApp('need_have_email_code')" type="button" class="flex w-full justify-center rounded-md bg-blue-700 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:bg-blue-900 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 hover-a" value="Enviar código">
+          <input onclick="loginApp('need_have_email_code')" type="button" class="flex w-full justify-center rounded-md bg-blue-600 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:bg-blue-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 hover-a" value="Enviar código">
         </div>
       </form>
     </div>
@@ -84,7 +84,8 @@
       document.getElementById('divSentEmailPassword').style.display = 'none';
 
       fetch(HTTP_HOST+'mainapp/login/', {method:'POST', body: formData}).then(r => r.json()).then(r => {  console.log(r); console.log(window.localStorage);
-          if(r && r.data && r.data.id > 0){
+          if(r && r.data && r.data.user_id > 0){
+            window.localStorage.setItem('user_id', r.data.user_id);
             window.localStorage.setItem('username', username);
             window.localStorage.setItem('password', password);
             window.localStorage.setItem('role', r.data.role);
