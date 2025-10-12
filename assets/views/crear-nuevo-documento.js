@@ -67,7 +67,7 @@ function getDepartmentTagsCND(){
             document.getElementById('tagsListCND').innerHTML = '';
             let htmlTags = '';
             response.data.forEach(tag => {
-                htmlTags += `<span class="tagcne" onclick="addToDocumentCND(${tag.id}, '${tag.name}')" title="Añadir la etiqueta al documento">${tag.name}</span>`;
+                htmlTags += `<span class="taggrey" onclick="addToDocumentCND(${tag.id}, '${tag.name}')" title="Añadir la etiqueta al documento">${tag.name}</span>`;
             });
             document.getElementById('tagsListCND').innerHTML = htmlTags;
         }

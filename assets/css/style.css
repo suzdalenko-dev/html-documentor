@@ -279,6 +279,18 @@ b{
     padding: 0px 4px;
     margin: 3px;
 }
+.taggrey{
+    display: inline-block;
+    background-color: grey;
+    color: white;
+    border-radius: 3px;
+    padding: 0px 4px;
+    margin: 3px;
+}
+.taggrey:hover{
+    background-color: rgb(50, 50, 50);
+    cursor: pointer;
+}
 .tagcne:hover{
     background-color: rgb(5, 5, 150);
     cursor: pointer;

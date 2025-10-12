@@ -6,7 +6,7 @@ function listadoEtiquetasInit() {
 }
 
 function getAllTags() {
-    onlyGet('public/tag/get/all_tags/', function(response) {
+    onlyGet('public/tag/get/get_my_tags/', function(response) {
         let htmlLE = '';
         response.data.map(x => {
             let users = '';

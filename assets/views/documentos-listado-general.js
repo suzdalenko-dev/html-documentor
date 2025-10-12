@@ -1,5 +1,7 @@
-let currentPageDLG = 1;
-let totalPagesDLG  = 1;
+let currentPageDLG  = 1;
+let totalPagesDLG   = 1;
+let tagsIdsSelected = Set();
+let tagsSelected    = Set();
 
 function documentosListadoGeneralInit(){
     document.title = "Filtrar documentos";
@@ -7,6 +9,7 @@ function documentosListadoGeneralInit(){
 
     getDocDLG();
     getSetFromDLG();
+    getUserTagsDLG();
 }
 
 function getDocDLG(load_false){
@@ -116,4 +119,21 @@ function nextPageDLG(){
     currentPageDLG++;
     if(currentPageDLG > totalPagesDLG) {currentPageDLG = totalPagesDLG; }
     getDocDLG('load_false');
+}
+
+function getUserTagsDLG(){
+    suzdalenkoPost('public/tag/get/get_tags_dep/?user_id='+window.localStorage.getItem('user_id'), {}, function(response){
+        if(response && response.data && response.data.tags){
+            document.getElementById('mytagsDLG').innerHTML = '';
+            let htmlTags = '';
+            response.data.tags.forEach(tag => {
+                htmlTags += `<span class="taggrey" onclick="addTagInFilterDLG(${tag.id}, '${tag.name}')" title="Eliminar esta etiqueta">${tag.name}</span>`;
+            });
+            document.getElementById('mytagsDLG').innerHTML = htmlTags;
+        }
+    });
+}
+
+function addTagInFilterDLG(tgId, tgName){
+
 }
