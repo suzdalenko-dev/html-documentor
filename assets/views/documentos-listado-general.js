@@ -1,7 +1,12 @@
-let currentPageDLG  = 1;
-let totalPagesDLG   = 1;
-let tagsIdsSelected = Set();
-let tagsSelected    = Set();
+let currentPageDLG     = 1;
+let totalPagesDLG      = 1;
+
+let tagsSelectedDLG    = window.localStorage.getItem('filtered_tags_dlg') ? JSON.parse(window.localStorage.getItem('filtered_tags_dlg')) : [];
+
+let tagIdsDLG          = '';
+let oldPageNumberDLG   = 0;
+let oldTagsIdsDLG      = '';
+
 
 function documentosListadoGeneralInit(){
     document.title = "Filtrar documentos";
@@ -10,6 +15,7 @@ function documentosListadoGeneralInit(){
     getDocDLG();
     getSetFromDLG();
     getUserTagsDLG();
+    showFilteredTags();
 }
 
 function getDocDLG(load_false){
@@ -20,13 +26,28 @@ function getDocDLG(load_false){
     }
 
     let url = 'public/doc/get/all_doc/?user_id='+window.localStorage.getItem('user_id');
-    if(currentPageDLG && currentPageDLG > 1){ url += '&number_page='+currentPageDLG; }
     if(window.localStorage.getItem('filter_text_dlg') && window.localStorage.getItem('filter_text_dlg') != ''){ url += '&filter_text='+window.localStorage.getItem('filter_text_dlg');}
     if(window.localStorage.getItem('creation_date_from') && window.localStorage.getItem('creation_date_from') != ''){ url += '&creation_date_from='+window.localStorage.getItem('creation_date_from');}
     if(window.localStorage.getItem('creation_date_to') && window.localStorage.getItem('creation_date_to') != ''){ url += '&creation_date_to='+window.localStorage.getItem('creation_date_to'); }
     if(window.localStorage.getItem('expiration_date_from') && window.localStorage.getItem('expiration_date_from') != ''){ url += '&expiration_date_from='+window.localStorage.getItem('expiration_date_from');}
     if(window.localStorage.getItem('expiration_date_to') && window.localStorage.getItem('expiration_date_to') != ''){ url += '&expiration_date_to='+window.localStorage.getItem('expiration_date_to');}
+    let tagsStored = window.localStorage.getItem('filtered_tags_dlg');
+    if (tagsStored) {
+        if((oldPageNumberDLG == currentPageDLG && oldTagsIdsDLG != tagIdsDLG) || (oldPageNumberDLG == currentPageDLG && oldTagsIdsDLG == '')){
+            currentPageDLG = 0;
+        }
 
+        let tagsArray = JSON.parse(tagsStored);
+        if (Array.isArray(tagsArray) && tagsArray.length > 0) {
+            tagIdsDLG = tagsArray.map(t => t.id).join(',');
+            url += '&tag_ids=' + tagIdsDLG;
+            oldTagsIdsDLG = tagIdsDLG;
+        }
+    }
+    if(currentPageDLG && currentPageDLG > 1){ 
+        url += '&number_page='+currentPageDLG; 
+        oldPageNumberDLG = currentPageDLG;
+    }
 
     onlyGet(url, function (r) {
         if(r && r.data && r.data.docs && r.data.docs.length > 0){
@@ -97,8 +118,10 @@ function clearFilterDLG(){
     window.localStorage.removeItem('creation_date_to');
     window.localStorage.removeItem('expiration_date_from');
     window.localStorage.removeItem('expiration_date_to');
+    window.localStorage.removeItem('filtered_tags_dlg');
     getSetFromDLG();
     getDocDLG();
+    showFilteredTags();
 }
 
 function applyFilterDLG(){
@@ -134,6 +157,31 @@ function getUserTagsDLG(){
     });
 }
 
-function addTagInFilterDLG(tgId, tgName){
+function showFilteredTags(){
+    tagsSelectedDLG    = window.localStorage.getItem('filtered_tags_dlg') ? JSON.parse(window.localStorage.getItem('filtered_tags_dlg')) : [];
+    let tagsHtml = '';
+    
+    if(tagsSelectedDLG.length  > 0){
+        document.getElementById('selectedTagsDivDLG').style.display = 'block'; 
+        for (let t of  tagsSelectedDLG){ tagsHtml += `<span class="tagcne" onclick="deleteThisDLG(${t.id})" title="Eliminar la etiqueta del documento">${t.name}</span>`; }
+    }
+    if(tagsSelectedDLG.length == 0){ document.getElementById('selectedTagsDivDLG').style.display = 'none';}
+    document.getElementById('selectedTagsDLG').innerHTML = tagsHtml;
+}
 
+function addTagInFilterDLG(tgId, tgName){
+    let itemExist = false;
+    tagsSelectedDLG.map(tag => { if(tag.id == tgId){ itemExist = true; }});
+
+    if(itemExist == false){ tagsSelectedDLG.push({id: tgId, name: tgName}); }
+    window.localStorage.setItem('filtered_tags_dlg', JSON.stringify(tagsSelectedDLG));
+    showFilteredTags();
+    getDocDLG();
+}
+
+function deleteThisDLG(tagId){
+    tagsSelectedDLG = tagsSelectedDLG.filter(tag => tag.id !== tagId);
+    window.localStorage.setItem('filtered_tags_dlg', JSON.stringify(tagsSelectedDLG));
+    showFilteredTags();
+    getDocDLG();
 }
