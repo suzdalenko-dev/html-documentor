@@ -10,11 +10,13 @@ function verDetalleDocumentoInit(){
 function getFilesVDD(docId){
     onlyGet('public/doc/get/doc_by_id/?doc_id='+docId+'&user_id='+window.localStorage.getItem('user_id'), (r) => {
         if(r && r.data && r.data.error == 'no'){ console.log(r.data)
+            // https://suzdalenko-dev.github.io/html-documentor/assets/img/template.png
             let fileNames   = '';
             if(r.data.doc_lines && r.data.doc_lines.length > 0){
                 let framesHtml = '';
-                r.data.doc_lines.map(l => {
+                r.data.doc_lines.map(l => { console.log(l.file_name)
                     let url = HTTP_HOST + 'public/doc/get/serve_document/?code='+l.code;
+                    if(!l.file_name.includes('.pdf')){ url = 'https://suzdalenko-dev.github.io/html-documentor/assets/img/template.png'; }
                     framesHtml += `<div>
                                       <iframe src="${url}" class="doc-preview"></iframe>
                                       <div class="doc-actions"><button class="btn-view" onclick="window.open('${url}', '_blank')">👁️ Ver </button></div>
