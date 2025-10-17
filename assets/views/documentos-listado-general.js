@@ -10,7 +10,7 @@ let oldTagsIdsDLG      = '';
 
 function documentosListadoGeneralInit(){
     document.title = "Filtrar documentos";
-    document.getElementById('slugTitle').innerHTML = '<h2 class="text-xl font-semibold mb-4"><span class="searchDLG" onclick="closeOpenFilterDLG()">🔎</span> Listado Documentos</h2>';
+    document.getElementById('slugTitle').innerHTML = '<h2 class="text-xl font-semibold mb-4"><span class="searchDLG" onclick="closeOpenFilterDLG()">🔎</span> Listado documentos</h2>';
 
     getDocDLG();
     getSetFromDLG();

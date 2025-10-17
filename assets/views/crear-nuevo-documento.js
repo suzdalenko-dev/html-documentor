@@ -3,7 +3,7 @@ let dataSetedCDN = new Set();
 
 function crearNuevoDocumentoInit(){
     document.title = "Crear nuevo documento";
-    document.getElementById('slugTitle').innerHTML = '<h2 class="text-xl font-semibold mb-4">Crear Nuevo Documento</h2>';
+    document.getElementById('slugTitle').innerHTML = '<h2 class="text-xl font-semibold mb-4">Crear nuevo documento</h2>';
 
     getDepartmentTagsCND();
     getUserEmalCND();
@@ -37,7 +37,7 @@ function saveDocCND(){
         body: formData,
         headers: {'Authorization': 'Bearer ' + (window.localStorage.getItem('token') || 'xxx')}
     }).then(res => res.json()).then(res => {
-        if (res && res.data && res.data.error == 'no' && res.data.id > 0) { console.log(res.data)
+        if (res && res.data && res.data.error == 'no' && res.data.id > 0) {
             showM('Documento guardado correctamente ✅', 'success');
             setTimeout(() => { window.location.href = '/dashboard/#ver-detalle-documento?doc_id='+res.data.id; }, 1000);
         } else {

@@ -9,19 +9,19 @@ function verDetalleDocumentoInit(){
 
 function getFilesVDD(docId){
     onlyGet('public/doc/get/doc_by_id/?doc_id='+docId+'&user_id='+window.localStorage.getItem('user_id'), (r) => {
-        if(r && r.data && r.data.error == 'no'){ console.log(r.data)
-            // https://suzdalenko-dev.github.io/html-documentor/assets/img/template.png
+        if(r && r.data && r.data.error == 'no'){
             let fileNames   = '';
             if(r.data.doc_lines && r.data.doc_lines.length > 0){
                 let framesHtml = '';
-                r.data.doc_lines.map(l => { console.log(l.file_name)
-                    let url = HTTP_HOST + 'public/doc/get/serve_document/?code='+l.code;
+                r.data.doc_lines.map(l => {
+                    let url  = HTTP_HOST + 'public/doc/get/serve_document/?code='+l.code;
+                    let url2 = HTTP_HOST + 'public/doc/get/serve_document/?code='+l.code;
                     if(!l.file_name.includes('.pdf')){ url = 'https://suzdalenko-dev.github.io/html-documentor/assets/img/template.png'; }
                     framesHtml += `<div>
                                       <iframe src="${url}" class="doc-preview"></iframe>
-                                      <div class="doc-actions"><button class="btn-view" onclick="window.open('${url}', '_blank')">👁️ Ver </button></div>
+                                      <div class="doc-actions"><button class="btn-view" onclick="window.open('${url2}', '_blank')">👁️ Ver </button></div>
                                     </div>`;
-                    fileNames += `<a href="${url}" target="_blank" class="link_id_dlg ml-3"> ${l.file_name} </a>`;
+                    fileNames += `<a href="${url2}" target="_blank" class="link_id_dlg ml-3"> ${l.file_name} </a>`;
                 });
                 document.getElementById('iframeContainerVDD').innerHTML = framesHtml;
             }
@@ -42,6 +42,5 @@ function getFilesVDD(docId){
                 showM('Error desconocido', 'error');
             }
         }
-
     });
 }

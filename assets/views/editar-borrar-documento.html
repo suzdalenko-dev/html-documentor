@@ -1,10 +1,10 @@
-<iframe src="" width="322px" height="350px" style="border:none; display: none;" id="iframeEBD"></iframe>
-<br>
+<div id="iframeContainerEBD" class="flex flex-wrap gap-4 justify-start mb-6"></div>
+
 <div class="p-4 bg-white shadow-md rounded-md">
   <div class="space-y-4">
     <div>
-      <label class="block text-sm font-medium mb-1">Nombre archivo</label>
-      <a id="file_name_edb" class="w-full rounded px-2 py-1 link_id_dlg" onclick="showPrevieEBD()"></a>
+      <label class="block text-sm font-medium mb-1">Archivos</label>
+      <div id="link_files_ebd"></div>
     </div>
 
     <div>
@@ -40,7 +40,7 @@
     </div>
 
     <div class="flex justify-end gap-3 pt-4">
-      <button onclick="saveDocEBD()" type="button" class="bluecol">Guardar</button>
+      <button onclick="updateEBD()" type="button" class="bluecol">Actualizar</button>
     </div>
   </div>
 </div>
@@ -52,3 +52,5 @@
   </div>
 </div>
 
+
+<br><br><br><br><br><br><br>
