@@ -10,7 +10,7 @@ let oldTagsIdsDLG      = '';
 
 function documentosListadoGeneralInit(){
     document.title = "Filtrar documentos";
-    document.getElementById('slugTitle').innerHTML = '<h2 class="text-xl font-semibold mb-4"><span class="searchDLG" onclick="closeOpenFilterDLG()">🔎</span> Listado documentos</h2>';
+    document.getElementById('slugTitle').innerHTML = '<h2 class="text-xl font-semibold mb-4"><span class="searchDLG" onclick="closeOpenFilterDLG()">🔎</span> Listado Documentos</h2>';
 
     getDocDLG();
     getSetFromDLG();
@@ -54,17 +54,17 @@ function getDocDLG(load_false){
             let htmlDLG = '';
             r.data.docs.forEach(d => {
                 htmlDLG += `<tr>
-                                <td class="border px-2 py-1 text-center">${d.id}</td>
+                                <td class="border px-2 py-1 text-center" onclick="showPreviewDLG('${d.id}')"><a class="link_id_dlg">${d.id}</a></td>
                                 <td class="border px-2 py-1 text-left">${d.title}</td>
                                 <td class="border px-2 py-1 text-left">${d.descrption}</td>
                                 <td class="border px-2 py-1 text-center">${formatDateToEuropean(d.created_at)}</td>
                                 <td class="border px-2 py-1 text-center">${formatDateToEuropean(d.expiration_date)}</td>
                                 <td class="border px-2 py-1 text-left">${semicolonReplace(d.notification_emails)}</td>
                                 <td class="border px-2 py-1 text-left">${notNull(d.tags)}</td>
+                                <td class="border px-2 py-1 text-left">${showEditPancelDLG(d.user_id, d.id)}</td>
                             </tr>`;
             });
             document.getElementById('tableDLG').innerHTML = htmlDLG;
-            console.log(r.data);
             document.getElementById('totalDocsCount').innerText = r.data.total_docs ? r.data.total_docs : '0';
             document.getElementById('pageInfoDLG').innerText = 'Página '+(r.data.page ? r.data.page : '1')+' de '+(r.data.total_pages ? r.data.total_pages : '1');
             currentPageDLG = r.data.page ? r.data.page : 1;
@@ -77,6 +77,18 @@ function getDocDLG(load_false){
             totalPagesDLG  = 0;
         }
     });
+}
+
+function openDocEditDLG(docId){
+    window.open('/dashboard/#editar-borrar-documento?doc_id='+docId, '_self')
+}
+
+function showEditPancelDLG(docUserId, docId){
+    if(window.localStorage.getItem('user_id') > 0 && window.localStorage.getItem('user_id') == docUserId){
+        return `<span onclick="openDocEditDLG(${docId})" class="hovered">📝</span>`;
+    } else {
+        return '';
+    }
 }
 
 function closeOpenFilterDLG(){
@@ -184,4 +196,8 @@ function deleteThisDLG(tagId){
     window.localStorage.setItem('filtered_tags_dlg', JSON.stringify(tagsSelectedDLG));
     showFilteredTags();
     getDocDLG();
+}
+
+function showPreviewDLG(doc_id){
+    window.open('/dashboard/#ver-detalle-documento?doc_id='+doc_id, '_self');
 }

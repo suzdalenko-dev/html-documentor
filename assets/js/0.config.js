@@ -14,7 +14,7 @@ function onlyGet(url, callback) {
     return response.json();
   }).then(callback)
   .catch(error => {
-    showM('Error AppGet '+ error, 'error');
+    showM('Error AppGet1 '+ error, 'error');
   });
 }
 
@@ -27,7 +27,7 @@ function suzdalenkoGet(url, callback) {
     return response.json();
   }).then(callback)
   .catch(error => {
-    showM('Error AppGet '+ error, 'error');
+    showM('Error AppGet2 '+ error, 'error');
   });
 }
 
@@ -53,7 +53,7 @@ function suzdalenkoPost(url, objectValues = {}, callback) {
     return response.json();
   }).then(callback)
     .catch(error => {
-      showM('Error AppGetPost ' + error, 'error');
+      showM('Error AppGet3Post ' + error, 'error');
   });
 }
 

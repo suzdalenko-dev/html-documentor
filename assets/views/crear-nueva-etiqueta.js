@@ -1,6 +1,6 @@
 function crearNuevaEtiquetaInit(){
     document.title = "Crear nueva etiqueta";
-    document.getElementById('slugTitle').innerHTML = '<h2 class="text-xl font-semibold mb-4">Crear nueva etiqueta<h/2>';
+    document.getElementById('slugTitle').innerHTML = '<h2 class="text-xl font-semibold mb-4">Crear Nueva Etiqueta<h/2>';
 
     getUserTagsCNE();
 }

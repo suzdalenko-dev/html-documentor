@@ -10,35 +10,40 @@ function crearNuevoDocumentoInit(){
 }
 
 function saveDocCND(){
-    const title = document.getElementById('doc_title').value.trim();
-    const description = document.getElementById('doc_description').value.trim();
-    const expiration_date = document.getElementById('doc_date').value;
-    const email_aviso = document.getElementById('email_aviso').value.trim();
-    const fileInput = document.getElementById('doc_file');
-    const file = fileInput.files[0];
-    const tags = Array.from(dataSetedCDN).map(tag => tag.id).join(',');
+    let title = document.getElementById('doc_title').value.trim();
+    let description = document.getElementById('doc_description').value.trim();
+    let expiration_date = document.getElementById('doc_date').value;
+    let email_aviso = document.getElementById('email_aviso').value.trim();
+    let fileInput = document.getElementById('doc_file');
+    let files = fileInput.files;
+    let tags = Array.from(dataSetedCDN).map(tag => tag.id).join(',');
 
-    if(!title || !expiration_date || !email_aviso || !file){
+    if(!title || !expiration_date || !email_aviso || files.length == 0){
         showM('Por favor, completa todos los campos del formulario.', 'warning');
         return;
     }
-    const formDataObj = {
-        title: title,
-        description: description,
-        expiration_date: expiration_date,
-        email_aviso: email_aviso,
-        file: file,      // <- importante: pasamos el archivo
-        tags: tags       // IDs de las etiquetas
-    };
+    let formData = new FormData();
+        formData.append('title', title);
+        formData.append('description', description);
+        formData.append('expiration_date', expiration_date);
+        formData.append('email_aviso', email_aviso);
+        formData.append('tags', tags);
 
-    suzdalenkoPost('documentor/doc/post/create_new_doc/', formDataObj, function (res) {
-        if (res && res.data && res.data.error == 'no' && res.data.id > 0) {
+    // 🔹 Añadir cada archivo al FormData
+    for (let i = 0; i < files.length; i++) { formData.append('files', files[i]); }
+
+    fetch(HTTP_HOST + 'documentor/doc/post/create_new_doc/', {
+        method: 'POST',
+        body: formData,
+        headers: {'Authorization': 'Bearer ' + (window.localStorage.getItem('token') || 'xxx')}
+    }).then(res => res.json()).then(res => {
+        if (res && res.data && res.data.error == 'no' && res.data.id > 0) { console.log(res.data)
             showM('Documento guardado correctamente ✅', 'success');
-            setTimeout(() => { window.location.href = '/dashboard/#documentos-listado-general'; }, 1100);
+            setTimeout(() => { window.location.href = '/dashboard/#ver-detalle-documento?doc_id='+res.data.id; }, 1000);
         } else {
-            showM('Error al guardar el documento: ' + (res.data.message || 'Error desconocido'), 'error');
+            showM('Error al guardar: ' + (res.message || 'Error desconocido'), 'error');
         }
-    });
+    }).catch(err => showM('Error de conexión: ' + err, 'error'));
 }
 
 function deleteThisCND(tagId){

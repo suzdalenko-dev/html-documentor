@@ -276,16 +276,18 @@ b{
     background-color: rgb(25, 25, 235);
     color: white;
     border-radius: 3px;
-    padding: 0px 4px;
+    padding: 0px 2px;
     margin: 3px;
+    line-height: 15px;
 }
 .taggrey{
     display: inline-block;
     background-color: grey;
     color: white;
     border-radius: 3px;
-    padding: 0px 4px;
+    padding: 0px 2px;
     margin: 3px;
+    line-height: 15px;
 }
 .taggrey:hover{
     background-color: rgb(50, 50, 50);
@@ -328,4 +330,42 @@ b{
 .searchDLG{
     border: 1px solid rgb(25, 25, 235);
     border-radius: 3px;
+}
+.link_id_dlg{
+    color: rgb(25, 25, 235);
+    text-decoration-line: underline;
+
+}
+.link_id_dlg:hover{
+    cursor: pointer;
+}
+.doc-preview{
+    height: 257px;
+    width: 197px;
+}
+
+.doc-actions {
+  display: flex;
+  justify-content: space-between; /* 👈 uno a la izquierda y otro a la derecha */
+  align-items: center;
+  width: 100%;
+  background: #f9fafb;
+  padding: 6px 10px;
+}
+.btn-view, .btn-delete {
+  font-size: 11px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  border-radius: 3px;
+  padding: 2px;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+.btn-view:hover {
+  background: rgb(25, 25, 235);
+  color: #fff;
+}
+.btn-delete:hover {
+  background: #dc3545;
+  color: #fff;
 }
