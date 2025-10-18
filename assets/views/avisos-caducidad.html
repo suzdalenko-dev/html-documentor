@@ -1,0 +1,32 @@
+<div class="p-4 bg-white shadow-md rounded-md">
+    <div class="space-y-4">
+        <div class="flex items-center gap-4 mb-4">
+            <label for="diasSlider" class="text-sm font-medium text-gray-700 whitespace-nowrap">Mostrar documentos que vencen desde 0 días:</label>
+            <input id="diasSlider" type="range" min="0" max="360" step="1" value="11" class="w-2/3 cursor-pointer" oninput="onChangeAC(this.value)" style="accent-color: grey;">
+            <span id="diasLabel" class="text-sm font-semibold">hasta 360 días</span>
+        </div>
+        <div>Días seleccionados <span id="selectedDaysAC"></span>, caducan desde <span id="expiredUntilAC"></span></div>
+
+        <div class="flex flex-col gap-2 text-sm w-full">
+            <div>
+                <table class="w-ful styled-table-fh stycky-table">
+                    <thead>
+                        <tr class="twcolor">
+                            <th class="topLeft">Id</th>
+                            <th>Nombre</th>
+                            <th>Descripción</th>
+                            <th>Creado</th>
+                            <th>Expira</th>
+                            <th>Aviso</th>
+                            <th>Etiquetas</th>
+                            <th class="topRight"></th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableAV">
+                        
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

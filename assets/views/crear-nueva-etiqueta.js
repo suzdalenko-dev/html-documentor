@@ -48,7 +48,7 @@ function createTagCNE(){
             document.getElementById('tagCNE').value = '';
             showM('Creacion de etiqueta exitosa', 'success');
        } else {
-            if(response && response.data && response.data.error == 'yes'){ alert('1')
+            if(response && response.data && response.data.error == 'yes'){
                 showM(response.data.message, 'warning');
             } else {
                 showM('Error al crear la etiqueta. Inténtalo de nuevo.', 'error');

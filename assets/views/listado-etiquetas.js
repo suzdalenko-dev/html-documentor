@@ -13,7 +13,15 @@ function getAllTags() {
             let tags  = '';
             x.users.map(u => { 
                 let userName = u.name.charAt(0).toUpperCase() + u.name.slice(1);
-                users += userName + ', '; 
+                /* 
+                    la idea es que el usuarios Admin y Alexey solo esten en dep. informatica
+                    The idea is that the users Admin and Alexey are only in the IT department
+                */
+                if(x.name != 'Informatica' && (userName == 'Admin' || userName == 'Alexey')){
+                  
+                } else {
+                    users += userName + ', ';
+                }
             });
             x.tags.map(t => { tags += t.name+', '; });
 

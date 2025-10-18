@@ -387,3 +387,12 @@ function notNull(x){
   if(x == 'null' || x == 'None' || x == 'undefined') return '';
   return String(x).trim();
 }
+
+function addDaysFunc(days) {
+  const today = new Date();
+  today.setDate(today.getDate() + parseInt(days));
+  const yyyy = today.getFullYear();
+  const mm = String(today.getMonth() + 1).padStart(2, '0');
+  const dd = String(today.getDate()).padStart(2, '0');
+  return `${yyyy}-${mm}-${dd}`; 
+}

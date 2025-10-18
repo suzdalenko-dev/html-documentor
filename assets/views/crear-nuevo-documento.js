@@ -1,7 +1,10 @@
-let idsSetedCND  = new Set();
-let dataSetedCDN = new Set();
+let idsSetedCND  = null;
+let dataSetedCDN = null;
 
 function crearNuevoDocumentoInit(){
+    idsSetedCND = new Set();
+    dataSetedCDN= new Set();
+    
     document.title = "Crear nuevo documento";
     document.getElementById('slugTitle').innerHTML = '<h2 class="text-xl font-semibold mb-4">Crear nuevo documento</h2>';
 

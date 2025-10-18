@@ -1,8 +1,10 @@
 let docIdEBD     = 0;
-let idsSetedEBD  = new Set();
-let dataSetedEBD = new Set();
+let idsSetedEBD  = null;
+let dataSetedEBD = null;
 
 function editarBorrarDocumentoInit(){
+    idsSetedEBD  = new Set();
+    dataSetedEBD = new Set();
     let pageRoute = parseHashRoute();
     docIdEBD = pageRoute.params.doc_id;
 
@@ -89,6 +91,22 @@ function showTagsInDocEBD(){
     document.getElementById('selectedTagsEDB').innerHTML = htmlTagsEDB;
 }
 
+function deleteFileEBD(lineId){
+    let confirm1 = confirm('¿Eliminar archivo?');
+    if(!confirm1) { return; }
+    let confirm2 = confirm('¿Seguro que quieres eliminar archivo?');
+    if(!confirm2) {return; }
+    suzdalenkoPost('documentor/doc/post/delete_doc_line/', {line_id: lineId}, (res => {
+        if(res && res.data && res.data.error == 'no'){
+            showM('Archivo eliminado');
+            clearDataPageEBD();
+            editarBorrarDocumentoInit();
+        } else {
+            showM(res.data.message, 'error');
+        }
+    }));
+}
+
 function showInframeEBD(doc_tags){
     let fileNames  = '';
     let framesHtml = '';
@@ -97,8 +115,11 @@ function showInframeEBD(doc_tags){
         let url2 = HTTP_HOST + 'public/doc/get/serve_document/?code='+l.code;
         if(!l.file_name.includes('.pdf')){ url = 'https://suzdalenko-dev.github.io/html-documentor/assets/img/template.png'; }
         framesHtml += `<div>
-                          <iframe src="${url}" class="doc-preview"></iframe>
-                          <div class="doc-actions"><button class="btn-view" onclick="window.open('${url2}', '_blank')">👁️ Ver </button></div>
+                            <iframe src="${url}" class="doc-preview"></iframe>
+                            <div class="doc-actions">
+                                <button class="btn-view" onclick="window.open('${url2}', '_blank')">👁️ Ver </button>
+                                <button class="btn-delete" onclick="deleteFileEBD(${l.id})">🗑️ Borrar </button>
+                            </div>
                         </div>`;
         fileNames += `<a href="${url2}" target="_blank" class="link_id_dlg ml-3"> ${l.file_name} </a>`;
     });
@@ -137,10 +158,23 @@ function updateEBD(){
         headers: {'Authorization': 'Bearer ' + (window.localStorage.getItem('token') || 'xxx')}
     }).then(res => res.json()).then(res => {
         if (res && res.data && res.data.error == 'no' && res.data.id > 0) {
-            showM('Documento guardado correctamente ✅', 'success');
-            setTimeout(() => { window.location.href = '/dashboard/#ver-detalle-documento?doc_id='+res.data.id; }, 1000);
+            showM('Documento actualizado correctamente', 'success');
+            clearDataPageEBD();
+            editarBorrarDocumentoInit();
         } else {
             showM('Error al guardar: ' + (res.message || 'Error desconocido'), 'error');
         }
     }).catch(err => showM('Error de conexión: ' + err, 'error'));
+}
+
+function clearDataPageEBD(){
+    document.getElementById('iframeContainerEBD').innerHTML = '';
+    document.getElementById('link_files_ebd').innerHTML     = '';
+    document.getElementById('doc_title_edb').value          = '';
+    document.getElementById('doc_description_edb').value    = '';
+    document.getElementById('doc_date_edb').value           = '';
+    document.getElementById('email_aviso_edb').value        = '';
+    document.getElementById('doc_file_edb').value           = '';
+    document.getElementById('selectedTagsEDB').innerHTML    = '';
+    document.getElementById('tagsListEBD').innerHTML        = '';
 }

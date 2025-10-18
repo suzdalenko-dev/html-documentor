@@ -6,6 +6,6 @@ let menuData = [
   ]},
   { title: 'Etiquetas', icon: '🏷️', roles: [], submenu: [
     { title: 'Nueva etiqueta',  icon: '➕', submenu: null , view: 'crear-nueva-etiqueta', roles: []},
-    { title: 'Listado etiquetas', icon: '🏷️', submenu: null , view: 'listado-etiquetas', roles: []}
+    { title: 'Dep. usuarios etiquetas', icon: '🏷️', submenu: null , view: 'listado-etiquetas', roles: []}
   ]}
 ];

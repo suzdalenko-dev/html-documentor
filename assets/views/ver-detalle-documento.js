@@ -25,7 +25,7 @@ function getFilesVDD(docId){
                 });
                 document.getElementById('iframeContainerVDD').innerHTML = framesHtml;
             }
-            document.getElementById('slugTitle').innerHTML       = `<h2 class="text-xl font-semibold mb-4">${r.data.doc.title}<h/2>`;
+            document.getElementById('slugTitle').innerHTML       = `<h2 class="text-xl font-semibold mb-4">Ver detalle ${r.data.doc.title}<h/2>`;
             document.getElementById('file_links_vdd').innerHTML  = fileNames;
             document.getElementById('doc_title_vdd').value       = r.data.doc.title;
             document.getElementById('doc_description_vdd').value = r.data.doc.descrption;
